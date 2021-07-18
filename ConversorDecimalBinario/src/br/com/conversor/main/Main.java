@@ -14,38 +14,42 @@ public class Main {
 		System.out.println("			||                            	  ||");
 		System.out.println("			||                           	  ||");
 		System.out.println("			////////////////////////////////////\n");
-		System.out.println("--Press 0 to exit\n");
-		
-		Scanner scan = new Scanner(System.in);
-		Conversor convert = new Conversor();
-		
-		System.out.println("Informe o número a ser convertido: ");
-		int number = 0;
-		
-		try {
-			number = scan.nextInt();
-		}catch (Exception e) {
-			System.out.println("Valor inválido!");
-			System.exit(0);
-		}
-		
-		
-		while(number != 0) {
-		
-			System.out.println("Número Decimal: "+number);
-			System.out.println("Número Binário: "+convert.convertDecimalForBinary(number)+"\n");
-			System.out.println("--Press 0 to exit\n");
 
+		System.out.println("--Pressione 'b' binario para decimal\n");
+		System.out.println("--Pressione 'd' decimal para binario\n");
+
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Informe o tipo de conversão:");
+		String scanOperation = scan.nextLine();
+
+		Conversor convert = new Conversor();
+
+		while (scanOperation.equals("b") || scanOperation.equals("d")) {
+			int number = 0;
 			System.out.println("Informe o número a ser convertido: ");
 			
 			try {
 				number = scan.nextInt();
 			}catch(Exception e) {
 				System.out.println("Valor inválido!");
-				System.exit(0);
 			}
-		}
+			
+			if (scanOperation.equals("b")) {
+				
+					System.out.println("Número Binário: " + number);
+					System.out.println("Número Decimal: " + convert.convertBinaryForDecimal(number) + "\n");
 
+			} else if (scanOperation.equals("d")) {
+
+					System.out.println("Número Decimal: " + number);
+					System.out.println("Número Binário: " + convert.convertDecimalForBinary(number) + "\n");
+			}
+			
+			System.out.println("--Pressione 'b' binario para decimal");
+			System.out.println("--Pressione 'd' decimal para binario\n");
+			System.out.println("Informe o tipo de conversão:");
+			scanOperation = scan.next();
+		}
 	}
 
 }
